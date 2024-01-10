@@ -243,12 +243,6 @@ else:
 finally:
     print("This block is always executed")
 
-# Recuerda que este script contiene ejemplos y no está diseñado para ejecutarse en su totalidad de una vez.
-
-
-
-
-
 # Ejercicio Extra:
 
 print('\n[+] Ejercicio extra:\n')
