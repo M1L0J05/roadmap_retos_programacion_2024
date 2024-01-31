@@ -17,10 +17,10 @@ print(a)  # a sigue siendo 10
 # Modificar un objeto afecta a todas las variables que hacen referencia a él.
 
 #Ejemplo
-lista1 = [1, 2, 3]
-lista2 = lista1  # lista2 apunta al mismo objeto que lista1
-lista2.append(4)
-print(lista1)  # lista1 se ve afectada, [1, 2, 3, 4]
+list_1 = [1, 2, 3]
+list_2 = list_1  # list_2 apunta al mismo objeto que list_1
+list_2.append(4)
+print(list_1)  # list_1 se ve afectada, [1, 2, 3, 4]
 
 # En resumen: 
 # Con asignación por valor, cada variable tiene su propio valor independiente. 
@@ -35,31 +35,31 @@ print(lista1)  # lista1 se ve afectada, [1, 2, 3, 4]
 # *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
 # *   Comprueba también que se ha conservado el valor original en las primeras.
 
-def intercambiar_valores(valor1, valor2):
-    temp = valor1
-    valor1 = valor2
-    valor2 = temp
-    return valor1, valor2
+def exchange_values(value_1, value_2):
+    tmp = value_1
+    value_1 = value_2
+    value_2 = tmp
+    return value_1, value_2
 
 # Ejemplo de uso
-original1 = 5
-original2 = 10
+original_value_1 = 'Hola'
+original_value_2 = 'Mundo'
 
-nuevo1, nuevo2 = intercambiar_valores(original1, original2)
+new_value_1, new_value_2 = exchange_values(original_value_1, original_value_2)
 
-print("Originales:", original1, original2) # ---> Originales: 5 10
-print("Nuevos:", nuevo1, nuevo2) # ---> Nuevos: 10 5
+print(f"Original Values: {original_value_1}, {original_value_2}") # ---> Original Values: Hola, Mundo
+print(f"New Values: {new_value_1}, {new_value_2}") # ---> New Values: Mundo, Hola
 
 
-def intercambiar_referencias(lista1, lista2):
-    lista1[0], lista2[0] = lista2[0], lista1[0]
-    return lista1, lista2
+def exchange_references(list_1, list_2):
+    list_1[0], list_2[0] = list_2[0], list_1[0]
+    return list_1, list_2
 
 # Ejemplo de uso
-original_lista1 = [5]
-original_lista2 = [10]
+original_list_1 = ['Hola']
+original_list_2 = ['Python']
 
-nueva_lista1, nueva_lista2 = intercambiar_referencias(original_lista1, original_lista2)
+new_list_1, new_list_2 = exchange_references(original_list_1, original_list_2)
 
-print("Originales:", original_lista1[0], original_lista2[0]) # ---> Originales: 10 5
-print("Nuevos:", nueva_lista1[0], nueva_lista2[0])  # ---> Nuevos: 5 10
+print(f"Original Lists: [{original_list_1[0]}], [{original_list_2[0]}]") # ---> Original Lists: [Python], [Hola]
+print(f"New Lists: [{new_list_1[0]}], [{new_list_2[0]}]")  # ---> New Lists: [Python], [Hola]
