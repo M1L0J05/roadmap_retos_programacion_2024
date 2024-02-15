@@ -24,7 +24,10 @@
 # del módulo `collections`. Puedes añadir elementos a la cola usando 
 # el método `append()` y eliminar elementos usando el método `popleft()`.
 
+
+# Ejercicio
 import time
+import random
 from collections import  deque
 
 def ejercicio():
@@ -60,24 +63,41 @@ def ejercicio():
 
 
 # Ejercicios Extra
+
 web_history = []
 url_anterior = ''
 url_actual = ''
 url_posterior = ''
 
-def adelante():
+def adelante(url):
     global url_actual
     global url_posterior
     global url_anterior
+    
+    if not url_posterior:
+        print(f'[i] Se encuentra en el final')
+    else:
+        if url_anterior:
+            url_anterior.append(web_history)
+        url_anterior=url_actual
+        url_actual=url_posterior
+        url_posterior=''
 
-
-
-    url_actual = url
-    print(f'[+] Adelante ---> {url}')
-
-def atras():
+def atras(url):
     global url_actual
-    print('[+] Atras')
+    global url_posterior
+    global url_anterior
+    
+    if not url_anterior:
+        print(f'[i] No existe una URL anterior')
+    else:
+        url_posterior=url_actual
+        url_actual=url_anterior
+        if len(web_history) > 0:
+            url_anterior=web_history.pop()
+        else:
+            url_anterior=''
+
 
 def navegar(url):
     global url_actual
@@ -89,13 +109,13 @@ def navegar(url):
 
     print(f'[+] Navegar: {url}')
 
-def extra_1():
+def navegando():
     while True:
         user_intput = input("\nIngrese 'adelante', 'atras' o la URL de una nueva página:\n")
         if user_intput.lower() == "adelante":
-            adelante()
+            adelante(user_intput)
         elif user_intput.lower() == "atras":
-            atras()
+            atras(user_intput)
         else:
             navegar(user_intput)
         
@@ -106,4 +126,35 @@ def extra_1():
         print(f'[i] Url_posterior: {url_posterior}')
 
 
-extra_1()
+
+# Ejercicio Extra 2
+
+def impresora(cola_impresion):
+    cont = 0
+    imprimir = False
+    while True:
+        if not imprimir:
+            documento = f'{cont}.txt'
+            cola_impresion.append(documento)
+            print(f'\n[i] Añadido documento {documento} a la cola de impresión')
+            print(f'[i] Archivos en cola: {cola_impresion}\n\n') 
+            time.sleep(0.5)
+            if len(cola_impresion) > 3:
+                imprimir = True
+            else:
+                num = random.randint(1, 5)
+                if num % 2 != 0:
+                    imprimir = True
+            cont += 1
+        else:
+            try:
+                print(f'[i] Imprimiendo {cola_impresion.popleft()}...')
+            except IndexError:
+                print('[i] No hay documentos en la cola para imprimir')
+            imprimir = False
+
+# Ejecucion de los ejercicios.
+#ejercicio()
+#navegando()
+cola_impresion = deque()
+impresora(cola_impresion)
